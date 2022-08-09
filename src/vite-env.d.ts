@@ -1,2 +1,2 @@
 /// <reference types="vite/client" />
-/// <reference types="redux-persist/types" />
+/// <reference types="redux-persist" />

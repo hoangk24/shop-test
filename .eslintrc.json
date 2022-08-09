@@ -16,6 +16,13 @@
   "rules": {
     "prettier/prettier": ["error"],
     "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/button-has-type": "off",
+    "react/no-array-index-key": "off",
+    "no-param-reassign": "off",
     "react/jsx-filename-extension": [
       1,
       { "extensions": [".js", ".jsx", ".tsx", ".ts"] }

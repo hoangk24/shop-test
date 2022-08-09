@@ -1,10 +1,20 @@
+import classNames from "classnames";
 import React from "react";
-import { Box, CircularProgress } from "@mui/material";
+import "./Loader.css";
 
-export default function Loader() {
+type Props = {
+  className?: string;
+};
+export default function Loader({ className }: Props) {
   return (
-    <Box>
-      <CircularProgress />
-    </Box>
+    <div
+      className={classNames(
+        "bg-base-200 flex items-center flex-col justify-center",
+        className
+      )}
+    >
+      <div className="pulsing-3" />
+      <span className="font-bold text-2xl">...Loading</span>
+    </div>
   );
 }
