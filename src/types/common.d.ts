@@ -1,11 +1,9 @@
-import React from "react";
-
-interface IRoute {
-  path: string;
-  component: React.ReactNode<any>;
-  hasLayout?: boolean;
+export type PaginationRequest = {
+  page: number;
+};
+export interface PaginationResponse<T> {
+  page: number;
+  results: T[];
+  total_results: number;
+  total_pages: number;
 }
-interface IRoutes {
-  [x: string]: IRoute;
-}
-export type { IRoute, IRoutes };

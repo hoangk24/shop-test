@@ -7,7 +7,6 @@ import MovieCard from "./MovieCard";
 
 export default function UpComing() {
   const { items } = useUpComing();
-  console.log(items);
   return (
     <div>
       <Heading>😭 Up coming</Heading>

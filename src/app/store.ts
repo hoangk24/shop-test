@@ -10,15 +10,15 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default () => {
-  const store = configureStore({
-    reducer: persistedReducer,
-    middleware(getDefaultMiddleware) {
-      return getDefaultMiddleware({
-        serializableCheck: false,
-      });
-    },
-  });
-  const persistor = persistStore(store);
-  return { store, persistor };
-};
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware(getDefaultMiddleware) {
+    return getDefaultMiddleware({
+      serializableCheck: false,
+    });
+  },
+});
+export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

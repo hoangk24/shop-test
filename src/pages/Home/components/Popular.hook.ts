@@ -1,14 +1,27 @@
-import tmdbApi from "api/tmdApi";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { GetMoviePopularResponse } from "features/example/movie/movie";
+import { getPopularAction } from "features/example/movie/movie.thunk";
+import { useAppDispatch } from "hooks/useDispatch";
 import { useEffect, useState } from "react";
 
 export default function usePopular() {
-  const [items, setItems] = useState([]);
+  const [data, setData] = useState<GetMoviePopularResponse | undefined>(
+    undefined
+  );
+  const [loading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const dispatch = useAppDispatch();
 
   const load = async () => {
-    await tmdbApi.getMoviePoplular({ page }).then((res: any) => {
-      setItems(res.results);
-    });
+    setIsLoading(true);
+    dispatch(getPopularAction({ page }))
+      .then(unwrapResult)
+      .then((res: any) => {
+        setData(res);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const handleBack = () => {
@@ -26,5 +39,5 @@ export default function usePopular() {
     load();
   }, [page]);
 
-  return { handleBack, handleNext, items };
+  return { handleBack, handleNext, loading, data: data?.results };
 }
